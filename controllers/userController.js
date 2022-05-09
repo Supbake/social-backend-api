@@ -16,7 +16,7 @@ module.exports = {
                 return res.status(500).json(err);
             });
     },
-
+    // getting a single user by ID 
     getSingleUser(req, res) {
         User.findOne({ _id: req.params.userId })
             .then((user) =>
@@ -26,7 +26,12 @@ module.exports = {
             )
             .catch((err) => res.status(500).json(err));
     },
-    
+    // create new user
+    createUser(req, res) {
+        User.create(req.body)
+            .then((user) => res.json(user))
+            .catch((err) => res.status(500).json(err));
+    },
 
 
 
