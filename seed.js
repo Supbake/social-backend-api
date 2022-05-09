@@ -1,38 +1,5 @@
-const { Schema, model } = require('mongoose');
-
-
-const userSchema = new Schema(
-    {
-        userName: {
-            type: String,
-            unique: true,
-            required: true,
-            //trimmed??
-        },
-        email: {
-            type: String,
-            required: true,
-            unique: true,
-            //matching validation in mongoose??
-        },
-        thoughts: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'Thought',
-            },
-        ],
-        friends: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'User',
-            },
-        ],
-    },
-);
-
-const User = model('user', userSchema);
-
-const handleError = (err) => console.error(err);
+const User = require('./models/User');
+const mongoose = require('mongoose');
 
 User.find({}).exec((err, collection) => {
     if (err) {
@@ -66,3 +33,32 @@ User.find({}).exec((err, collection) => {
 });
 
 module.exports = User;
+// const seedUsers = [
+//         {
+//             userName: 'Jacob',
+//             email: 'Jacob@gmail.com',
+//         },
+//         {
+//             userName: 'Alex',
+//             email: 'Alex@gmail.com',
+//         },
+//         {
+//             userName: 'Vehbi',
+//             email: 'Vehbi@gmail.com',
+//         },
+//         {
+//             userName: 'Drew',
+//             email: 'Drew@gmail.com',
+//         },
+//     console.info('Seeding complete! 🌱')
+// ];
+
+// //inserting seed data
+// const seedDB = async () => {
+//     await User.insertMany(seedUsers)
+// };
+// // seeding DB then closing 
+// seedDB().then(() => {
+//     mongoose.connection.close();
+// });
+
