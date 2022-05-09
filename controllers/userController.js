@@ -32,7 +32,7 @@ module.exports = {
             .then((user) => res.json(user))
             .catch((err) => res.status(500).json(err));
     },
-    //update user info
+    //update user info by ID
     updateUser(req, res) {
         User.findOneAndUpdate(
             { _id: req.params.userId },
@@ -48,6 +48,18 @@ module.exports = {
                 console.log(err);
                 res.status(500).json(err);
             });
+    },
+    //delete user by ID
+    deleteUser(req, res) {
+        User.findOneAndRemove({ _id: req.params.userId })
+            .then((user) =>
+                !user
+                    ? res
+                        .status(404)
+                        .json({ message: 'No user with this id!' })
+                    : res.json({ message: 'User successfully deleted!' })
+            )
+            .catch((err) => res.status(500).json(err));
     },
 
 
