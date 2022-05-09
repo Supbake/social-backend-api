@@ -28,6 +28,11 @@ const userSchema = new Schema(
             },
         ],
     },
+    {
+        toJSON: {
+            getters: true,
+        },
+    }
 );
 
 const User = model('user', userSchema);
