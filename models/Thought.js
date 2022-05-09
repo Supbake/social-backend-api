@@ -40,22 +40,22 @@ Thought.find({}).exec((err, collection) => {
                 {
                     thoughtText: "Find me a Shrubberry",
                     userName: "Jacob",
-                    userId: "62785acfb4f310321b208fba"
+                    // userId: "62785acfb4f310321b208fba"
                 },
                 {
                     thoughtText: "We are the Knights that say Nee",
                     userName: "Alex",
-                    userId: "62785acfb4f310321b208fbb"
+                    // userId: "62785acfb4f310321b208fbb"
                 },
                 {
                     thoughtText: "...and what do we do with Witches",
                     userName: "Vehbi",
-                    userId: "62785acfb4f310321b208fbc"
+                    // userId: "62785acfb4f310321b208fbc"
                 },
                 {
                     thoughtText: "It's but a flesh wound",
                     userName: "Drew",
-                    userId: "62785acfb4f310321b208fbd"
+                    // userId: "62785acfb4f310321b208fbd"
                 },
             ],
             (insertError) =>
