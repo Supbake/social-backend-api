@@ -1,7 +1,6 @@
 const { Schema, model } = require('mongoose');
-const reactionSchema = require('./Reaction.js');
 
-// Schema to create Student model
+// Schema to create Thought model
 const thoughtSchema = new Schema(
     {
         thoughtText: {
@@ -14,11 +13,11 @@ const thoughtSchema = new Schema(
             type: Date,
             default: Date.now,
         },
-        username: {
+        userName: {
             type: String,
             required: true,
         },
-        reactions: [reactionSchema],
+        // reactions: [reactionSchema],
     },
     {
         toJSON: {
@@ -28,5 +27,42 @@ const thoughtSchema = new Schema(
 );
 
 const Thought = model('thought', thoughtSchema);
+
+const handleError = (err) => console.error(err);
+
+Thought.find({}).exec((err, collection) => {
+    if (err) {
+        return handleError(err);
+    }
+    if (collection.length === 0) {
+        return Thought.insertMany(
+            [
+                {
+                    thoughtText: "Find me a Shrubberry",
+                    userName: "Jacob",
+                    userId: "62785acfb4f310321b208fba"
+                },
+                {
+                    thoughtText: "We are the Knights that say Nee",
+                    userName: "Alex",
+                    userId: "62785acfb4f310321b208fbb"
+                },
+                {
+                    thoughtText: "...and what do we do with Witches",
+                    userName: "Vehbi",
+                    userId: "62785acfb4f310321b208fbc"
+                },
+                {
+                    thoughtText: "It's but a flesh wound",
+                    userName: "Drew",
+                    userId: "62785acfb4f310321b208fbd"
+                },
+            ],
+            (insertError) =>
+                insertError ? handleError(insertError) : console.log('Inserted')
+        );
+    }
+    return console.log('Already populated');
+});
 
 module.exports = Thought;
