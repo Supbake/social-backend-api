@@ -1,4 +1,32 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
+// reaction schema 
+const reactionSchema = new Schema(
+    {
+        reactionId: {
+            type: Types.ObjectId,
+            default: new Types.ObjectId,
+        },
+        reactionBody: {
+            type: String,
+            required: true,
+            maxlength: 280,
+            minlength: 1,
+        },
+        userName: {
+            type: String,
+            required: true,
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now,
+        },
+    },
+    {
+        toJSON: {
+            getters: true,
+        },
+    }
+);
 
 // Schema to create Thought model
 const thoughtSchema = new Schema(
@@ -17,7 +45,7 @@ const thoughtSchema = new Schema(
             type: String,
             required: true,
         },
-        // reactions: [reactionSchema],
+        reactions: [reactionSchema],
     },
     {
         toJSON: {
@@ -25,6 +53,7 @@ const thoughtSchema = new Schema(
         },
     }
 );
+
 
 const Thought = model('thought', thoughtSchema);
 
@@ -40,22 +69,22 @@ Thought.find({}).exec((err, collection) => {
                 {
                     thoughtText: "Find me a Shrubberry",
                     userName: "Jacob",
-                    // userId: "62785acfb4f310321b208fba"
+                    reactions: [ { reactionBody: 'A What?', userName: 'Jacob' } ],
                 },
                 {
                     thoughtText: "We are the Knights that say Nee",
                     userName: "Alex",
-                    // userId: "62785acfb4f310321b208fbb"
+                    reactions: { reactionBody: 'The Knights that say Nee?', userName: 'Alex' },
                 },
                 {
                     thoughtText: "...and what do we do with Witches",
                     userName: "Vehbi",
-                    // userId: "62785acfb4f310321b208fbc"
+                    reactions: { reactionBody: '...burn them?', userName: 'Vehbi' },
                 },
                 {
                     thoughtText: "It's but a flesh wound",
                     userName: "Drew",
-                    // userId: "62785acfb4f310321b208fbd"
+                    reactions: { reactionBody: 'Oh come on now...', userName: 'Drew' },
                 },
             ],
             (insertError) =>
