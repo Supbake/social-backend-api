@@ -4,6 +4,7 @@ module.exports = {
     // getting all users
     getUsers(req, res) {
         User.find()
+            .select('-__v')
             .then(async (users) => {
                 const userObj = {
                     users,
@@ -18,7 +19,8 @@ module.exports = {
     // getting a single user by ID 
     getSingleUser(req, res) {
         User.findOne({ _id: req.params.userId })
-            .populate('thoughts')
+            .select('-__v')
+            .populate('Thoughts')
             .then((user) =>
                 !user
                     ? res.status(404).json({ message: 'No user with that ID' })

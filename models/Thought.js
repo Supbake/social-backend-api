@@ -55,9 +55,9 @@ const thoughtSchema = new Schema(
 );
 
 
-const Thought = model('thought', thoughtSchema);
+const Thought = model('Thought', thoughtSchema);
 
-const Reaction = model('reaction', reactionSchema);
+const Reaction = model('Reaction', reactionSchema);
 
 const handleError = (err) => console.error(err);
 

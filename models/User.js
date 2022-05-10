@@ -16,13 +16,13 @@ const userSchema = new Schema(
         thoughts: [ 
             {
                 type: Schema.Types.ObjectId,
-                ref: 'thought',
+                ref: 'Thought',
             },
         ],
         friends: [
             {
                 type: Schema.Types.ObjectId,
-                ref: 'user',
+                ref: 'User',
             },
         ],
     },
@@ -34,7 +34,7 @@ const userSchema = new Schema(
     }
 );
 
-const User = model('user', userSchema);
+const User = model('User', userSchema);
 
 const handleError = (err) => console.error(err);
 
