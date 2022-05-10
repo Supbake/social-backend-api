@@ -7,15 +7,13 @@ const userSchema = new Schema(
             type: String,
             unique: true,
             required: true,
-            //trimmed??
         },
         email: {
             type: String,
             required: true,
             unique: true,
-            //matching validation in mongoose??
         },
-        thoughts: [
+        thoughts: [ 
             {
                 type: Schema.Types.ObjectId,
                 ref: 'thought',

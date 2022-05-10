@@ -57,6 +57,8 @@ const thoughtSchema = new Schema(
 
 const Thought = model('thought', thoughtSchema);
 
+const Reaction = model('reaction', reactionSchema);
+
 const handleError = (err) => console.error(err);
 
 Thought.find({}).exec((err, collection) => {
@@ -94,4 +96,4 @@ Thought.find({}).exec((err, collection) => {
     return console.log('Already populated');
 });
 
-module.exports = Thought;
+module.exports = Thought, Reaction;
